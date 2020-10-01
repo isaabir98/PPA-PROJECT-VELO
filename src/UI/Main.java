@@ -132,7 +132,8 @@ public class Main extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
         );
 
-        pack();
+        setSize(new java.awt.Dimension(488, 339));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -153,6 +154,7 @@ public class Main extends javax.swing.JFrame {
 
             logdetails ld = new logdetails();
             ld.setVisible(true);
+            this.dispose();
             
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
