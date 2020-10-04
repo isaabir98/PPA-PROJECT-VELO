@@ -91,7 +91,7 @@ public class organizationalsignin extends javax.swing.JFrame {
                         .addComponent(email, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
                         .addComponent(pword))
                     .addComponent(jButton2))
-                .addContainerGap(129, Short.MAX_VALUE))
+                .addContainerGap(229, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -113,8 +113,8 @@ public class organizationalsignin extends javax.swing.JFrame {
                     .addComponent(jButton2)
                     .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 77, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(54, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -128,7 +128,7 @@ public class organizationalsignin extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        setSize(new java.awt.Dimension(459, 373));
+        setSize(new java.awt.Dimension(559, 425));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -171,7 +171,7 @@ public class organizationalsignin extends javax.swing.JFrame {
                        Statement st = con.createStatement();
                     int execute = st.executeUpdate(c);
                          
-                            System.out.println("WORK PANNUDHU BROO");
+                            System.out.println("WORKS");
                             Main frame = new Main();
                             frame.setVisible(true);
                             this.dispose();

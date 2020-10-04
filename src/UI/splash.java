@@ -46,8 +46,8 @@ public class splash extends javax.swing.JFrame {
         pbar.setBackground(new java.awt.Color(255, 255, 255));
         pbar.setForeground(new java.awt.Color(153, 0, 0));
 
-        progress.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        progress.setForeground(new java.awt.Color(255, 255, 255));
+        progress.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
+        progress.setForeground(new java.awt.Color(0, 0, 102));
         progress.setText("0%");
 
         jLabel4.setFont(new java.awt.Font("Bernard MT Condensed", 0, 14)); // NOI18N
@@ -63,17 +63,18 @@ public class splash extends javax.swing.JFrame {
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(225, 225, 225))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(332, 332, 332)
-                        .addComponent(jLabel4))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(391, 391, 391)
-                        .addComponent(progress))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(156, 156, 156)
-                        .addComponent(pbar, javax.swing.GroupLayout.PREFERRED_SIZE, 603, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(pbar, javax.swing.GroupLayout.PREFERRED_SIZE, 603, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(422, 422, 422)
+                        .addComponent(progress)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
