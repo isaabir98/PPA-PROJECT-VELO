@@ -111,7 +111,9 @@ public class stock extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       
+            bicyclestock rs = new bicyclestock();
+            rs.setVisible(true);
+            this.dispose();
         
 
 // TODO add your handling code here:
