@@ -5,11 +5,17 @@
  */
 package UI;
 import Database.*;
+import Models.logrecords;
+import Models.organizationalaccounts;
 import java.awt.HeadlessException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -22,6 +28,9 @@ public class UserAccount extends javax.swing.JInternalFrame {
      */
     public UserAccount() {
         initComponents();
+        tablelord();
+        
+          
     }
 
     /**
@@ -53,33 +62,54 @@ public class UserAccount extends javax.swing.JInternalFrame {
         jButton2 = new javax.swing.JButton();
         jToggleButton1 = new javax.swing.JToggleButton();
         jPanel3 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        txtsearch = new javax.swing.JTextField();
+        txtdelete = new javax.swing.JTextField();
+        jTextField3 = new javax.swing.JTextField();
+        jButton3 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
         setTitle("UserAccount");
 
+        jPanel2.setBackground(new java.awt.Color(51, 51, 51));
         jPanel2.setMaximumSize(new java.awt.Dimension(400, 400));
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(153, 153, 0));
         jLabel1.setText("Create New User");
 
+        jLabel2.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(153, 153, 0));
         jLabel2.setText("Fill the Below");
 
+        jLabel4.setForeground(new java.awt.Color(0, 153, 153));
         jLabel4.setText("User Name");
 
+        jLabel5.setForeground(new java.awt.Color(0, 153, 153));
         jLabel5.setText("Email");
 
+        jLabel6.setForeground(new java.awt.Color(0, 153, 153));
         jLabel6.setText("NIC Number");
 
+        jLabel7.setForeground(new java.awt.Color(0, 153, 153));
         jLabel7.setText("Password");
 
+        jLabel8.setForeground(new java.awt.Color(0, 153, 153));
         jLabel8.setText("Confirm Password");
 
+        jLabel9.setForeground(new java.awt.Color(0, 153, 153));
         jLabel9.setText("Role");
 
+        role.setBackground(new java.awt.Color(153, 153, 153));
+        role.setForeground(new java.awt.Color(153, 0, 0));
         role.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ADMIN", "STOCK CONTROLLER", "SALES MANAGER", "" }));
 
+        jButton1.setBackground(new java.awt.Color(0, 0, 102));
+        jButton1.setForeground(new java.awt.Color(51, 255, 51));
         jButton1.setText("Create User");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -87,6 +117,8 @@ public class UserAccount extends javax.swing.JInternalFrame {
             }
         });
 
+        jButton2.setBackground(new java.awt.Color(0, 0, 102));
+        jButton2.setForeground(new java.awt.Color(51, 255, 51));
         jButton2.setText("Clear");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -94,6 +126,8 @@ public class UserAccount extends javax.swing.JInternalFrame {
             }
         });
 
+        jToggleButton1.setBackground(new java.awt.Color(0, 0, 102));
+        jToggleButton1.setForeground(new java.awt.Color(51, 255, 51));
         jToggleButton1.setText("Cancel");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -167,7 +201,7 @@ public class UserAccount extends javax.swing.JInternalFrame {
                             .addComponent(jLabel9)
                             .addComponent(role, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton2))
-                        .addContainerGap(98, Short.MAX_VALUE))
+                        .addContainerGap(111, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -178,15 +212,83 @@ public class UserAccount extends javax.swing.JInternalFrame {
 
         jTabbedPane1.addTab("Create User Account", jPanel2);
 
+        jPanel3.setBackground(new java.awt.Color(51, 51, 51));
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "USER NAME", "EMAIL", "ROLE"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        txtsearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtsearchKeyReleased(evt);
+            }
+        });
+
+        jTextField3.setBackground(new java.awt.Color(51, 51, 51));
+        jTextField3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jTextField3.setForeground(new java.awt.Color(204, 204, 0));
+        jTextField3.setText("USERNAME");
+
+        jButton3.setBackground(new java.awt.Color(0, 0, 0));
+        jButton3.setForeground(new java.awt.Color(0, 0, 255));
+        jButton3.setText("DELETE");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setBackground(new java.awt.Color(51, 51, 51));
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 204, 51));
+        jLabel3.setText("ENTER ROLE -:");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 550, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43)
+                .addComponent(txtsearch, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(110, 110, 110))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(49, 49, 49)
+                        .addComponent(txtdelete, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(59, 59, 59)
+                        .addComponent(jButton3)))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 434, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtsearch, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(42, 42, 42)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtdelete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3))
+                .addGap(96, 96, 96))
         );
 
         jTabbedPane1.addTab("Manage User Account", jPanel3);
@@ -277,12 +379,85 @@ public class UserAccount extends javax.swing.JInternalFrame {
         }        // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void txtsearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtsearchKeyReleased
+  try{
+          Connection con = dbConnect.getConnection();
+          String id= txtsearch.getText();
+              String sql="SELECT  `userName`, `role`, `email`  FROM `oraganizationaliusers`  where `role` LIKE '"+id+"' ";
+              PreparedStatement pst= con.prepareStatement(sql);
+              ResultSet rs=pst.executeQuery();
+              jTable1.setModel(net.proteanit.sql.DbUtils.resultSetToTableModel(rs)); 
+              
+          }
+          catch(Exception e)
+          {
+          
+          }
+                                // TODO add your handling code here:
+    }//GEN-LAST:event_txtsearchKeyReleased
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        
+        String username = txtdelete.getText();
+        if(username!="")
+        {
+
+            String query = "DELETE FROM `oraganizationaliusers` WHERE  userName = '" + username + "'";
+            try {
+                Statement st;
+
+                try {
+                    Connection con = dbConnect.getConnection();
+                    st = con.createStatement();
+
+                    int execute = st.executeUpdate(query);
+                    JOptionPane.showMessageDialog(rootPane, "Information Successfully Deleted");
+                    txtdelete.setText("");
+                    st.close();
+                    con.close();
+                } catch (Exception e) {
+                    System.out.println("nope" + e);
+                }
+
+            }
+
+            catch (Exception e) {
+                System.out.println("" + e);
+            }
+
+        }
+        
+        
+        
+        
+    
+// TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+private void tablelord()
+      {
+          try{
+          Connection con =dbConnect.getConnection();
+              String sql="SELECT * FROM `oraganizationaliusers`";
+              PreparedStatement pst= con.prepareStatement(sql);
+              ResultSet rs=pst.executeQuery();
+              jTable1.setModel(net.proteanit.sql.DbUtils.resultSetToTableModel(rs));
+              
+          }
+          catch(Exception e)
+          {
+          
+          }
+      
+      }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -291,13 +466,18 @@ public class UserAccount extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextField3;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JComboBox<String> role;
+    private javax.swing.JTextField txtdelete;
     private javax.swing.JTextField txtemail;
     private javax.swing.JTextField txtnic;
     private javax.swing.JTextField txtpword;
     private javax.swing.JTextField txtpword1;
+    private javax.swing.JTextField txtsearch;
     private javax.swing.JTextField txtusername;
     // End of variables declaration//GEN-END:variables
 }
